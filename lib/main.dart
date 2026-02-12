@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qent/core/theme/app_theme.dart';
 import 'package:qent/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:qent/generated/l10n.dart';
 
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           ],
 
           home: const HomePage(),
+          theme: AppTheme.mainTheme,
         );
       },
     );

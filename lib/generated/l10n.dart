@@ -54,6 +54,53 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Qent`
+  String get appName {
+    return Intl.message('Qent', name: 'appName', desc: '', args: []);
+  }
+
+  /// `Welcome to\nQent`
+  String get welcomeToQent {
+    return Intl.message(
+      'Welcome to\nQent',
+      name: 'welcomeToQent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lets Start\nA New Experience\nWith Car rental.`
+  String get letsStartANewExperience {
+    return Intl.message(
+      'Lets Start\nA New Experience\nWith Car rental.',
+      name: 'letsStartANewExperience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discover your next adventure with Qent. we’re here to provide you with a seamless car rental experience.\nLet’s get started on your journey.`
+  String get discoverYourNextAdventure {
+    return Intl.message(
+      'Discover your next adventure with Qent. we’re here to provide you with a seamless car rental experience.\nLet’s get started on your journey.',
+      name: 'discoverYourNextAdventure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message('Next', name: 'next', desc: '', args: []);
+  }
+
+  /// `Get Started`
+  String get getStarted {
+    return Intl.message('Get Started', name: 'getStarted', desc: '', args: []);
+  }
+
+  // skipped getter for the '' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
