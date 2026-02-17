@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24" height="24" viewBox="0 0 24 24"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none">
+
+  <!-- Top Rays -->
+  <line x1="7" y1="4" x2="7.5" y2="6"
+        stroke="#7F7F7F"
+        stroke-width="1.5"
+        stroke-linecap="round"/>
+
+  <line x1="12" y1="3.5" x2="12" y2="6"
+        stroke="#7F7F7F"
+        stroke-width="1.5"
+        stroke-linecap="round"/>
+
+  <line x1="17" y1="4" x2="16.5" y2="6"
+        stroke="#7F7F7F"
+        stroke-width="1.5"
+        stroke-linecap="round"/>
+
+  <!-- Eye Outline -->
+  <path d="M2 12C2 12 5.5 7 12 7C18.5 7 22 12 22 12C22 12 18.5 17 12 17C5.5 17 2 12 2 12Z"
+        stroke="#7F7F7F"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Iris Outer -->
+  <circle cx="12" cy="12" r="4"
+          stroke="#7F7F7F"
+          stroke-width="1.2"/>
+
+  <!-- Iris Detail Lines -->
+  <line x1="12" y1="8.5" x2="12" y2="15.5"
+        stroke="#7F7F7F"
+        stroke-opacity="0.5"
+        stroke-width="1"/>
+
+  <line x1="8.5" y1="12" x2="15.5" y2="12"
+        stroke="#7F7F7F"
+        stroke-opacity="0.5"
+        stroke-width="1"/>
+
+  <line x1="9.5" y1="9.5" x2="14.5" y2="14.5"
+        stroke="#7F7F7F"
+        stroke-opacity="0.5"
+        stroke-width="1"/>
+
+  <line x1="14.5" y1="9.5" x2="9.5" y2="14.5"
+        stroke="#7F7F7F"
+        stroke-opacity="0.5"
+        stroke-width="1"/>
+
+  <!-- Pupil -->
+  <circle cx="12" cy="12" r="2.2"
+          fill="#7F7F7F"/>
+
+  <!-- Light Reflection -->
+  <circle cx="13.3" cy="10.7" r="0.6"
+          fill="#FFFFFF"
+          fill-opacity="0.7"/>
+
+</svg>

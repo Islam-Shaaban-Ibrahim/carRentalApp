@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:qent/core/theme/color_manager.dart';
+import 'package:qent/core/resources/color_manager.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CustomPageIndicator extends StatelessWidget {

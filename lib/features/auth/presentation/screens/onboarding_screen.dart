@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qent/core/router/app_router.dart';
 import 'package:qent/core/shared/widgets/custom_button.dart';
 import 'package:qent/core/shared/widgets/custom_page_indicator.dart';
-import 'package:qent/features/auth/presentation/widgets/onboarding/onboarding_widget.dart';
+import 'package:qent/features/auth/presentation/widgets/onboarding_widget.dart';
+
 import 'package:qent/generated/assets.dart';
 import 'package:qent/generated/l10n.dart';
 
@@ -76,7 +78,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               duration: const Duration(milliseconds: 200),
                               curve: Curves.easeIn,
                             );
-                          } else {}
+                          } else {
+                            Navigator.pushNamed(context, AppRoutes.login);
+                          }
                         },
                       ),
                     ],

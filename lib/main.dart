@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:qent/core/theme/app_theme.dart';
+import 'package:qent/core/resources/app_theme.dart';
+import 'package:qent/core/router/app_router.dart';
 import 'package:qent/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:qent/generated/l10n.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
+
           builder: (context, child) => Overlay(
             key: globalOverlayKey,
             initialEntries: [OverlayEntry(builder: (context) => child!)],
@@ -36,8 +38,9 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
 
-          home: const HomePage(),
           theme: AppTheme.mainTheme,
+          initialRoute: AppRoutes.login,
+          onGenerateRoute: AppRouter.generateRoute,
         );
       },
     );

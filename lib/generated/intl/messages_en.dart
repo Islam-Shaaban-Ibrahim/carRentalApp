@@ -22,15 +22,39 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Already have an account? ",
+    ),
     "appName": MessageLookupByLibrary.simpleMessage("Qent"),
+    "apple": MessageLookupByLibrary.simpleMessage("Apple"),
+    "country": MessageLookupByLibrary.simpleMessage("Country"),
     "discoverYourNextAdventure": MessageLookupByLibrary.simpleMessage(
       "Discover your next adventure with Qent. we’re here to provide you with a seamless car rental experience.\nLet’s get started on your journey.",
     ),
+    "doNotHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Don\'t have an account? ",
+    ),
+    "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
+    "emailOrPhone": MessageLookupByLibrary.simpleMessage("Email/Phone Number"),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
+    "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
+    "google": MessageLookupByLibrary.simpleMessage("Google"),
     "letsStartANewExperience": MessageLookupByLibrary.simpleMessage(
       "Lets Start\nA New Experience\nWith Car rental.",
     ),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "or": MessageLookupByLibrary.simpleMessage("Or"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+    "rememberMe": MessageLookupByLibrary.simpleMessage("Remember Me"),
+    "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "verified": MessageLookupByLibrary.simpleMessage("Verified"),
+    "verify": MessageLookupByLibrary.simpleMessage("Verify"),
+    "welcomeBack": MessageLookupByLibrary.simpleMessage(
+      "Welcome Back\nReady to hit the road.",
+    ),
     "welcomeToQent": MessageLookupByLibrary.simpleMessage("Welcome to\nQent"),
   };
 }
