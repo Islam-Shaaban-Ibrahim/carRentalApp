@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:qent/core/presentation/widgets/loading_widget.dart';
 import 'package:qent/core/resources/color_manager.dart';
-import 'package:qent/core/shared/widgets/loading_widget.dart';
 
 class CustomButton extends StatelessWidget {
   final Color backgroundColor;
@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
   final String? iconPath;
   final bool isLoading;
 
-  final void Function() onPressed;
+  final void Function()? onPressed;
   const CustomButton({
     super.key,
     required this.title,
@@ -32,14 +32,16 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          disabledBackgroundColor: ColorManager.lightGrey,
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50.r),
             side: BorderSide(color: borderColor ?? ColorManager.transparent),
           ),
         ),
+
         child: isLoading
-            ? const LoadingWidget()
+            ? const LoadingWidget(color: ColorManager.white)
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -12,6 +12,17 @@
     "country": "Country",
     "verify": "Verify",
     "verified": "Verified",
+    "enterVerificationCode": "Enter verification code",
+    "weHaveSentACodeTo": "We have sent a code to: {method}",
+    "@weHaveSentACodeTo": {
+        "placeholders": {
+            "method": {}
+        }
+    },
+    "didNotReceiveOTP": "Didn’t receive the OTP? ",
+    "resend": "Resend",
+    "report": "Report",
+    "noInternetConnection": "No internet connection",
     "password": "Password",
     "forgotPassword": "Forgot Password",
     "rememberMe": "Remember Me",
@@ -23,5 +34,25 @@
     "alreadyHaveAccount": "Already have an account? ",
     "doNotHaveAccount": "Don't have an account? ",
     "or": "Or",
-    "": ""
+    "tryAgain": "Try Again",
+    "sessionExpired": "Session expired",
+    "selectLocation": "Select location",
+    "emailIsRequired": "Email is required",
+    "enterValidEmail": "Enter a valid email",
+    "passwordIsRequired": "Password is required",
+    "passwordMustBeAtLeast8Characters": "Password must be at least 8 characters",
+    "confirmPasswordIsRequired": "Confirm password is required",
+    "passwordsNotMatch": "Passwords not match",
+    "phoneNumberIsRequired": "Phone number is required",
+    "phoneNumberMustBe10Digits": "Phone number must be 10 digits",
+    "nameIsRequired": "Name is required",
+    "nameMustBeAtLeast3Characters": "Name must be at least 3 characters",
+    "fieldIsRequired": "Field is required",
+    "selectCountry": "Select country",
+    "codeSentSuccessfully": "Code sent successfully",
+    "availableToCreateCar": "Available To Create Car",
+    "nationalID": "National ID",
+    "dateOfBirth": "Date of Birth",
+    "nationalIDIsRequired": "National ID is required",
+    "nationalIDMustBe14Digits": "National ID must be 14 digits"
 }

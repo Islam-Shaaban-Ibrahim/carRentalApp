@@ -6,7 +6,7 @@ import 'package:qent/core/resources/color_manager.dart';
 import 'package:qent/generated/assets.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? title;
   final double heightAfterIt;
   final bool readOnly;
@@ -17,7 +17,6 @@ class CustomTextFormField extends StatefulWidget {
   final Widget? prefix;
   final Widget? textFormFieldIcon;
   final String? initialValue;
-
   final TextInputType? keyboardType;
   final dynamic Function(String)? onSubmit;
   final dynamic Function(String)? onChange;
@@ -37,9 +36,8 @@ class CustomTextFormField extends StatefulWidget {
   final bool autofocus;
   final List<TextInputFormatter>? inputFormatters;
   final TextCapitalization textCapitalization;
-
   const CustomTextFormField({
-    required this.controller,
+    this.controller,
     this.validate,
     super.key,
     this.title,
@@ -71,7 +69,7 @@ class CustomTextFormField extends StatefulWidget {
     this.hintText,
     this.isPassword = false,
     this.inputFormatters,
-    this.textCapitalization = TextCapitalization.words,
+    this.textCapitalization = TextCapitalization.none,
   });
 
   @override
@@ -82,7 +80,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   late bool isObscure = widget.isPassword;
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.circular(10.r);
     final style = Theme.of(context).textTheme;
     final fontSize = 16.sp;
     return Column(
@@ -95,7 +92,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           readOnly: widget.readOnly,
           controller: widget.controller,
           keyboardType: widget.keyboardType,
-
           obscureText: isObscure,
           textDirection: widget.textDirection,
           textAlign: widget.textAlign!,
@@ -120,8 +116,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           decoration: InputDecoration(
             icon: widget.textFormFieldIcon,
             errorText: widget.errorText,
-            fillColor: ColorManager.white,
-            filled: true,
             hintText: widget.hintText,
             contentPadding: EdgeInsets.symmetric(
               horizontal: 20.w,
@@ -130,29 +124,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             constraints: widget.constraints,
             counterText: widget.counterText,
             hintStyle: style.titleSmall!.copyWith(fontSize: fontSize),
-            errorStyle: style.labelLarge!.copyWith(fontSize: fontSize),
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorManager.lightGrey),
-              borderRadius: radius,
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorManager.primary),
-              borderRadius: radius,
-            ),
-            errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorManager.error),
-              borderRadius: radius,
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorManager.error),
-              borderRadius: radius,
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorManager.lightGrey),
-              borderRadius: radius,
-            ),
-
-            //border: const UnderlineInputBorder(),
+            errorStyle: style.bodyLarge!.copyWith(fontSize: fontSize),
             prefixIcon: widget.prefix,
             suffixIcon: widget.suffixIcon == null && !widget.isPassword
                 ? null
@@ -170,7 +142,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                         maxWidth: 20.w,
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(10.w),
+                        padding: EdgeInsets.all(13.w),
                         child: SvgPicture.asset(
                           widget.isPassword
                               ? isObscure

@@ -27,27 +27,20 @@ class _RememberMeAndForgotPasswordState
     final style = Theme.of(context).textTheme;
     return Row(
       children: [
-        SizedBox(
-          height: 20.w,
-          width: 20.w,
-          child: Checkbox(
-            value: value,
-            onChanged: (value) {
-              setState(() => this.value = value ?? false);
-              widget.onRememberMeChanged(value);
-            },
-            activeColor: ColorManager.primary,
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            visualDensity: VisualDensity.compact,
-          ),
+        Checkbox(
+          value: value,
+          onChanged: (value) {
+            setState(() => this.value = value ?? false);
+            widget.onRememberMeChanged(value);
+          },
+          activeColor: ColorManager.primary,
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: VisualDensity.compact,
         ),
         10.horizontalSpace,
-        GestureDetector(
-          onTap: () => widget.onRememberMeChanged(!value),
-          child: Text(
-            S.current.rememberMe,
-            style: style.titleSmall!.copyWith(fontSize: 14.sp),
-          ),
+        Text(
+          S.current.rememberMe,
+          style: style.titleSmall!.copyWith(fontSize: 14.sp),
         ),
         const Spacer(),
         InkWell(

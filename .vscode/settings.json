@@ -1,6 +1,7 @@
 {
-    "cSpell.words": [
-        "Qent",
-        "Roboto"
-    ]
+  "cSpell.words": [
+    "Qent",
+    "Roboto"
+  ],
+  "dart.flutterSdkPath": ".fvm/versions/3.38.3"
 }

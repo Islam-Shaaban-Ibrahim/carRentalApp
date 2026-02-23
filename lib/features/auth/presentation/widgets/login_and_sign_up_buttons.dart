@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qent/core/presentation/widgets/custom_button.dart';
+import 'package:qent/core/presentation/widgets/custom_rich_text.dart';
 import 'package:qent/core/resources/color_manager.dart';
 import 'package:qent/core/router/app_router.dart';
-import 'package:qent/core/shared/widgets/custom_button.dart';
 import 'package:qent/generated/assets.dart';
 import 'package:qent/generated/l10n.dart';
 
 class LoginAndSignUpButtons extends StatelessWidget {
-  const LoginAndSignUpButtons({super.key, this.isLogin = true});
+  const LoginAndSignUpButtons({
+    super.key,
+    this.isLogin = true,
+    this.onPressed,
+    this.isLoading = false,
+  });
   final bool isLogin;
+  final void Function()? onPressed;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomButton(
+          isLoading: isLoading,
           title: isLogin ? S.current.login : S.current.signUp,
-          onPressed: () {},
+          onPressed: onPressed,
         ),
         18.verticalSpace,
         CustomButton(
@@ -50,7 +59,18 @@ class LoginAndSignUpButtons extends StatelessWidget {
           onPressed: () {},
         ),
         45.verticalSpace,
-        _bottomWidget(context, isLogin),
+        CustomRichText(
+          onTap: () {
+            Navigator.pushReplacementNamed(
+              context,
+              isLogin ? AppRoutes.signUp : AppRoutes.login,
+            );
+          },
+          firstSpan: isLogin
+              ? S.current.doNotHaveAccount
+              : S.current.alreadyHaveAccount,
+          secondSpan: isLogin ? S.current.signUp : S.current.login,
+        ),
       ],
     );
   }
@@ -67,31 +87,5 @@ class LoginAndSignUpButtons extends StatelessWidget {
         child: Container(height: 1.h, color: ColorManager.lightGrey),
       ),
     ],
-  );
-}
-
-Widget _bottomWidget(BuildContext context, bool isLogin) {
-  final style = Theme.of(context).textTheme;
-  return InkWell(
-    onTap: () {
-      Navigator.pushReplacementNamed(
-        context,
-        isLogin ? AppRoutes.signUp : AppRoutes.login,
-      );
-    },
-    child: RichText(
-      text: TextSpan(
-        text: isLogin
-            ? S.current.doNotHaveAccount
-            : S.current.alreadyHaveAccount,
-        style: style.titleSmall!.copyWith(fontSize: 14.sp),
-        children: [
-          TextSpan(
-            text: isLogin ? S.current.signUp : S.current.login,
-            style: style.bodySmall!.copyWith(fontSize: 14.sp),
-          ),
-        ],
-      ),
-    ),
   );
 }

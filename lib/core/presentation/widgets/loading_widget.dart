@@ -140,121 +140,127 @@ class _LoadingWidgetState extends State<LoadingWidget>
   @override
   Widget build(BuildContext context) {
     final double size = widget.size ?? 35.sp;
-    final Color color = widget.color ?? ColorManager.white;
+    final Color color = widget.color ?? ColorManager.primary;
     final double dotMaxSize = size * 0.30;
     final double dotMinSize = size * 0.14;
     final double maxOffset = size * 0.35;
 
-    return SizedBox(
-      width: size,
-      height: size,
-      child: AnimatedBuilder(
-        animation: _animationController,
-        builder: (context, child) {
-          return Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              Transform.rotate(
-                angle: _animationController.evalDouble(
-                  to: math.pi / 8,
-                  end: 0.18,
-                ),
-                child: _animatingDots(
-                  visible: _animationController.value <= 0.18,
-                  fixedSize: true,
-                  color: color,
-                  dotInitialSize: dotMaxSize,
-                  initialOffset: maxOffset,
-                  finalOffset: 0,
-                  interval: const Interval(
-                    0.0,
-                    0.18,
-                    curve: Curves.easeInQuart,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SizedBox(
+          width: size,
+          height: size,
+          child: AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, child) {
+              return Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  Transform.rotate(
+                    angle: _animationController.evalDouble(
+                      to: math.pi / 8,
+                      end: 0.18,
+                    ),
+                    child: _animatingDots(
+                      visible: _animationController.value <= 0.18,
+                      fixedSize: true,
+                      color: color,
+                      dotInitialSize: dotMaxSize,
+                      initialOffset: maxOffset,
+                      finalOffset: 0,
+                      interval: const Interval(
+                        0.0,
+                        0.18,
+                        curve: Curves.easeInQuart,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Transform.rotate(
-                angle: _animationController.evalDouble(
-                  from: math.pi / 8,
-                  to: math.pi / 4,
-                  begin: 0.18,
-                  end: 0.36,
-                ),
-                child: _animatingDots(
-                  visible:
-                      _animationController.value >= 0.18 &&
-                      _animationController.value <= 0.36,
-                  fixedSize: false,
-                  color: color,
-                  dotInitialSize: dotMaxSize,
-                  dotFinalSize: dotMinSize,
-                  initialOffset: 0,
-                  finalOffset: maxOffset,
-                  interval: const Interval(
-                    0.18,
-                    0.36,
-                    curve: Curves.easeOutQuart,
+                  Transform.rotate(
+                    angle: _animationController.evalDouble(
+                      from: math.pi / 8,
+                      to: math.pi / 4,
+                      begin: 0.18,
+                      end: 0.36,
+                    ),
+                    child: _animatingDots(
+                      visible:
+                          _animationController.value >= 0.18 &&
+                          _animationController.value <= 0.36,
+                      fixedSize: false,
+                      color: color,
+                      dotInitialSize: dotMaxSize,
+                      dotFinalSize: dotMinSize,
+                      initialOffset: 0,
+                      finalOffset: maxOffset,
+                      interval: const Interval(
+                        0.18,
+                        0.36,
+                        curve: Curves.easeOutQuart,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              _rotatingDots(
-                visible:
-                    _animationController.value >= 0.36 &&
-                    _animationController.value <= 0.60,
-                color: color,
-                dotSize: dotMinSize,
-                initialAngle: math.pi / 4,
-                finalAngle: 7 * math.pi / 4,
-                interval: const Interval(
-                  0.36,
-                  0.60,
-                  curve: Curves.easeInOutSine,
-                ),
-                offset: maxOffset,
-              ),
-              Transform.rotate(
-                angle: _animationController.evalDouble(
-                  from: 7 * math.pi / 4,
-                  to: 2 * math.pi,
-                  begin: 0.6,
-                  end: 0.78,
-                ),
-                child: _animatingDots(
-                  visible:
-                      _animationController.value >= 0.60 &&
-                      _animationController.value <= 0.78,
-                  fixedSize: false,
-                  color: color,
-                  dotInitialSize: dotMinSize,
-                  dotFinalSize: dotMaxSize,
-                  initialOffset: maxOffset,
-                  finalOffset: 0,
-                  interval: const Interval(
-                    0.60,
-                    0.78,
-                    curve: Curves.easeInQuart,
+                  _rotatingDots(
+                    visible:
+                        _animationController.value >= 0.36 &&
+                        _animationController.value <= 0.60,
+                    color: color,
+                    dotSize: dotMinSize,
+                    initialAngle: math.pi / 4,
+                    finalAngle: 7 * math.pi / 4,
+                    interval: const Interval(
+                      0.36,
+                      0.60,
+                      curve: Curves.easeInOutSine,
+                    ),
+                    offset: maxOffset,
                   ),
-                ),
-              ),
-              _animatingDots(
-                visible:
-                    _animationController.value >= 0.78 &&
-                    _animationController.value <= 1.0,
-                fixedSize: true,
-                color: color,
-                dotInitialSize: dotMaxSize,
-                initialOffset: 0,
-                finalOffset: maxOffset,
-                interval: const Interval(
-                  0.78,
-                  0.96,
-                  curve: Curves.easeOutQuart,
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+                  Transform.rotate(
+                    angle: _animationController.evalDouble(
+                      from: 7 * math.pi / 4,
+                      to: 2 * math.pi,
+                      begin: 0.6,
+                      end: 0.78,
+                    ),
+                    child: _animatingDots(
+                      visible:
+                          _animationController.value >= 0.60 &&
+                          _animationController.value <= 0.78,
+                      fixedSize: false,
+                      color: color,
+                      dotInitialSize: dotMinSize,
+                      dotFinalSize: dotMaxSize,
+                      initialOffset: maxOffset,
+                      finalOffset: 0,
+                      interval: const Interval(
+                        0.60,
+                        0.78,
+                        curve: Curves.easeInQuart,
+                      ),
+                    ),
+                  ),
+                  _animatingDots(
+                    visible:
+                        _animationController.value >= 0.78 &&
+                        _animationController.value <= 1.0,
+                    fixedSize: true,
+                    color: color,
+                    dotInitialSize: dotMaxSize,
+                    initialOffset: 0,
+                    finalOffset: maxOffset,
+                    interval: const Interval(
+                      0.78,
+                      0.96,
+                      curve: Curves.easeOutQuart,
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
