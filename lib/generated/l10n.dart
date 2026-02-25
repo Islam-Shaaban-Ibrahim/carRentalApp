@@ -150,6 +150,16 @@ class S {
     return Intl.message('Verified', name: 'verified', desc: '', args: []);
   }
 
+  /// `Invalid Code`
+  String get invalidCode {
+    return Intl.message(
+      'Invalid Code',
+      name: 'invalidCode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter verification code`
   String get enterVerificationCode {
     return Intl.message(
@@ -185,6 +195,16 @@ class S {
     return Intl.message('Resend', name: 'resend', desc: '', args: []);
   }
 
+  /// `Reset`
+  String get reset {
+    return Intl.message('Reset', name: 'reset', desc: '', args: []);
+  }
+
+  /// `Continue`
+  String get continuee {
+    return Intl.message('Continue', name: 'continuee', desc: '', args: []);
+  }
+
   /// `Report`
   String get report {
     return Intl.message('Report', name: 'report', desc: '', args: []);
@@ -205,11 +225,51 @@ class S {
     return Intl.message('Password', name: 'password', desc: '', args: []);
   }
 
+  /// `Confirm Password`
+  String get confirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset your password`
+  String get resetYourPassword {
+    return Intl.message(
+      'Reset your password',
+      name: 'resetYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the email address associated with your account and\nwe'll send you a link to reset your password.`
+  String get enterTheEmailAddressAssociatedWithYourAccount {
+    return Intl.message(
+      'Enter the email address associated with your account and\nwe\'ll send you a link to reset your password.',
+      name: 'enterTheEmailAddressAssociatedWithYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Forgot Password`
   String get forgotPassword {
     return Intl.message(
       'Forgot Password',
       name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password reset successfully`
+  String get passwordResetSuccessfully {
+    return Intl.message(
+      'Password reset successfully',
+      name: 'passwordResetSuccessfully',
       desc: '',
       args: [],
     );

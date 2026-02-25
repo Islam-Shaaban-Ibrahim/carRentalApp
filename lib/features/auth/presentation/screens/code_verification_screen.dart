@@ -7,6 +7,7 @@ import 'package:qent/core/presentation/widgets/custom_verification_code_field.da
 import 'package:qent/core/presentation/widgets/loading_widget.dart';
 import 'package:qent/core/presentation/widgets/logo_and_name_widget.dart';
 import 'package:qent/core/router/app_router.dart';
+import 'package:qent/features/auth/domain/entities/verification_code_entity.dart';
 import 'package:qent/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:qent/features/auth/presentation/cubit/auth_state.dart';
 import 'package:qent/generated/l10n.dart';
@@ -25,7 +26,7 @@ class CodeVerificationScreen extends StatefulWidget {
 }
 
 class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
-  String token = '';
+  VerificationCodeEntity? verificationCode;
   @override
   void initState() {
     super.initState();
@@ -50,18 +51,22 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
             current.isSendVerifyCodeStates || current.isConfirmCodeStates,
         listener: (context, state) {
           if (state is SendVerifyCodeError) {
-            showAppBanner( state.message, isError: true);
+            showAppBanner(state.message, isError: true);
           } else if (state is ConfirmCodeError) {
-            showAppBanner( state.message, isError: true);
+            showAppBanner(state.message, isError: true);
           } else if (state is SendVerifyCodeSuccess) {
-            token = state.verifyToken;
-            showAppBanner( S.current.codeSentSuccessfully);
+            verificationCode = state.codeEntity;
+            showAppBanner(S.current.codeSentSuccessfully);
           } else if (state is ConfirmCodeSuccess) {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              widget.isPhone ? AppRoutes.home : AppRoutes.resetPassword,
-              (route) => false,
-            );
+            if (widget.isPhone) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRoutes.home,
+                (route) => false,
+              );
+            } else {
+              Navigator.pop(context, verificationCode);
+            }
           }
         },
         builder: (context, state) {
@@ -99,16 +104,25 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                             20.verticalSpace,
                             CustomVerificationCodeField(
                               isLoading: state is ConfirmCodeLoading,
-                              isDisabled: token.isEmpty,
+                              isDisabled: verificationCode == null,
                               onResend: () {
-                                token = '';
+                                verificationCode = null;
                                 _sendCode();
                               },
                               onVerify: (code) {
-                                context.read<AuthCubit>().confirmPhoneCode(
-                                  token,
-                                  code,
-                                );
+                                final cubit = context.read<AuthCubit>();
+                                if (widget.isPhone &&
+                                    verificationCode != null) {
+                                  cubit.confirmPhoneCode(
+                                    verificationCode!.token,
+                                    code,
+                                  );
+                                } else {
+                                  cubit.confirmEmailCode(
+                                    code: verificationCode!.code,
+                                    codeConfirm: code,
+                                  );
+                                }
                               },
                             ),
                             40.verticalSpace,

@@ -1,13 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:qent/core/constants.dart';
-import 'package:qent/features/auth/data/models/sign_up_request_params.dart';
+import 'package:qent/features/auth/data/models/verification_code_model.dart';
+import 'package:qent/features/auth/data/params/reset_password_request_params.dart';
+import 'package:qent/features/auth/data/params/sign_up_request_params.dart';
 
 abstract class AuthService {
   Future<Map<String, dynamic>> login(String email, String password);
   Future<Map<String, dynamic>> signUp(SignUpRequestParams params);
-  Future<String> sendVerifyCode(String method, {required bool isPhone});
+  Future<VerificationCodeModel> sendVerifyCode(
+    String method, {
+    required bool isPhone,
+  });
   Future<Map<String, dynamic>> confirmPhoneCode(String token, String code);
+  Future<void> resetPassword(ResetPasswordRequestParams params);
 }
 
 @LazySingleton(as: AuthService)
@@ -26,12 +32,15 @@ class AuthServiceImpl implements AuthService {
   }
 
   @override
-  Future<String> sendVerifyCode(String method, {required bool isPhone}) async {
+  Future<VerificationCodeModel> sendVerifyCode(
+    String method, {
+    required bool isPhone,
+  }) async {
     final response = await _dio.post(
       APIConstants.sendVerifyCodeEndPoint(isPhone),
       data: {isPhone ? 'phone' : 'email': method},
     );
-    return response.data[isPhone ? 'verify_token' : 'reset_token'];
+    return VerificationCodeModel.fromJson(response.data, isPhone: isPhone);
   }
 
   @override
@@ -53,5 +62,10 @@ class AuthServiceImpl implements AuthService {
       data: params.toJson(),
     );
     return response.data;
+  }
+
+  @override
+  Future<void> resetPassword(ResetPasswordRequestParams params) async {
+    await _dio.post(APIConstants.resetPasswordEndPoint, data: params.toJson());
   }
 }

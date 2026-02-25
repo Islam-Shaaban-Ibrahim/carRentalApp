@@ -35,9 +35,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "codeSentSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Code sent successfully",
     ),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "confirmPasswordIsRequired": MessageLookupByLibrary.simpleMessage(
       "Confirm password is required",
     ),
+    "continuee": MessageLookupByLibrary.simpleMessage("Continue"),
     "country": MessageLookupByLibrary.simpleMessage("Country"),
     "dateOfBirth": MessageLookupByLibrary.simpleMessage("Date of Birth"),
     "didNotReceiveOTP": MessageLookupByLibrary.simpleMessage(
@@ -54,6 +56,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Email is required",
     ),
     "emailOrPhone": MessageLookupByLibrary.simpleMessage("Email/Phone Number"),
+    "enterTheEmailAddressAssociatedWithYourAccount":
+        MessageLookupByLibrary.simpleMessage(
+          "Enter the email address associated with your account and\nwe\'ll send you a link to reset your password.",
+        ),
     "enterValidEmail": MessageLookupByLibrary.simpleMessage(
       "Enter a valid email",
     ),
@@ -67,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
     "google": MessageLookupByLibrary.simpleMessage("Google"),
+    "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid Code"),
     "letsStartANewExperience": MessageLookupByLibrary.simpleMessage(
       "Lets Start\nA New Experience\nWith Car rental.",
     ),
@@ -94,6 +101,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordMustBeAtLeast8Characters": MessageLookupByLibrary.simpleMessage(
       "Password must be at least 8 characters",
     ),
+    "passwordResetSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Password reset successfully",
+    ),
     "passwordsNotMatch": MessageLookupByLibrary.simpleMessage(
       "Passwords not match",
     ),
@@ -107,6 +117,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "rememberMe": MessageLookupByLibrary.simpleMessage("Remember Me"),
     "report": MessageLookupByLibrary.simpleMessage("Report"),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+    "reset": MessageLookupByLibrary.simpleMessage("Reset"),
+    "resetYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Reset your password",
+    ),
     "selectCountry": MessageLookupByLibrary.simpleMessage("Select country"),
     "selectLocation": MessageLookupByLibrary.simpleMessage("Select location"),
     "sessionExpired": MessageLookupByLibrary.simpleMessage("Session expired"),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qent/core/helpers/helper_methods.dart';
 import 'package:qent/core/helpers/validator.dart';
 import 'package:qent/core/presentation/widgets/custom_text_form_field.dart';
 import 'package:qent/core/resources/color_manager.dart';
@@ -37,8 +38,7 @@ class _AvailableToCreateCarState extends State<AvailableToCreateCar> {
 
     if (picked != null) {
       selectedDate = picked;
-      widget.dobController.text =
-          '${picked.day}/${picked.month}/${picked.year}';
+      widget.dobController.text = formatDateYYYYMMDD(picked);
     }
   }
 

@@ -46,7 +46,6 @@ class _CountryAndPhoneTextFieldState extends State<CountryAndPhoneTextField> {
               setState(() {
                 _country = country;
                 widget.onSelectCountry(_country!);
-                widget.controller.clear();
               });
             }
           },

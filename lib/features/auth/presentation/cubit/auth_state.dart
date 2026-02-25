@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:qent/features/auth/domain/entities/user_entity.dart';
+import 'package:qent/features/auth/domain/entities/verification_code_entity.dart';
 
 extension AuthStateX on AuthState {
   bool get isAuthStates =>
@@ -14,6 +15,11 @@ extension AuthStateX on AuthState {
       this is ConfirmCodeLoading ||
       this is ConfirmCodeSuccess ||
       this is ConfirmCodeError;
+
+  bool get isResetPasswordStates =>
+      this is ResetPasswordLoading ||
+      this is ResetPasswordSuccess ||
+      this is ResetPasswordError;
 }
 
 sealed class AuthState extends Equatable {
@@ -52,10 +58,10 @@ final class SendVerifyCodeLoading extends AuthState {
 }
 
 final class SendVerifyCodeSuccess extends AuthState {
-  final String verifyToken;
-  const SendVerifyCodeSuccess(this.verifyToken);
+  final VerificationCodeEntity codeEntity;
+  const SendVerifyCodeSuccess(this.codeEntity);
   @override
-  List<Object> get props => [verifyToken];
+  List<Object> get props => [codeEntity];
 }
 
 final class SendVerifyCodeError extends AuthState {
@@ -76,6 +82,21 @@ final class ConfirmCodeSuccess extends AuthState {
 final class ConfirmCodeError extends AuthState {
   final String message;
   const ConfirmCodeError(this.message);
+  @override
+  List<Object> get props => [message];
+}
+
+final class ResetPasswordLoading extends AuthState {
+  const ResetPasswordLoading();
+}
+
+final class ResetPasswordSuccess extends AuthState {
+  const ResetPasswordSuccess();
+}
+
+final class ResetPasswordError extends AuthState {
+  final String message;
+  const ResetPasswordError(this.message);
   @override
   List<Object> get props => [message];
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:qent/core/presentation/screens/onboarding_screen.dart';
 import 'package:qent/core/presentation/screens/splash_screen.dart';
 import 'package:qent/features/auth/presentation/screens/code_verification_screen.dart';
 import 'package:qent/features/auth/presentation/screens/login_screen.dart';
-import 'package:qent/core/presentation/screens/onboarding_screen.dart';
+import 'package:qent/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:qent/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:qent/features/home/presentation/screens/home_screen.dart';
 
@@ -29,6 +30,8 @@ class AppRouter {
             );
           },
         );
+      case AppRoutes.resetPassword:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
 
       default:
         return MaterialPageRoute(
@@ -45,7 +48,6 @@ class AppRoutes {
   static const String login = '/login';
   static const String signUp = '/sign_up';
   static const String codeVerification = '/code_verification';
-  static const String forgotPassword = '/forgot-password';
   static const String resetPassword = '/reset-password';
   static const String home = '/home';
 }

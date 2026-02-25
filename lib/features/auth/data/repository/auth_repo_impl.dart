@@ -1,14 +1,18 @@
 import 'dart:convert';
+
 import 'package:injectable/injectable.dart';
 import 'package:qent/core/constants.dart';
 import 'package:qent/core/di/service_locator.dart';
 import 'package:qent/core/helpers/helper_methods.dart';
 import 'package:qent/core/helpers/result.dart';
 import 'package:qent/core/services/cache_service.dart';
-import 'package:qent/features/auth/data/models/sign_up_request_params.dart';
 import 'package:qent/features/auth/data/models/user_model.dart';
+import 'package:qent/features/auth/data/models/verification_code_model.dart';
+import 'package:qent/features/auth/data/params/reset_password_request_params.dart';
+import 'package:qent/features/auth/data/params/sign_up_request_params.dart';
 import 'package:qent/features/auth/data/services/auth_service.dart';
 import 'package:qent/features/auth/domain/entities/user_entity.dart';
+import 'package:qent/features/auth/domain/entities/verification_code_entity.dart';
 import 'package:qent/features/auth/domain/repository/auth_repo.dart';
 
 @LazySingleton(as: AuthRepo)
@@ -27,14 +31,16 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Result<String>> sendVerifyCode(
+  Future<Result<VerificationCodeEntity>> sendVerifyCode(
     String method, {
     required bool isPhone,
   }) async {
     try {
-      return Result.success(
-        await _authService.sendVerifyCode(method, isPhone: isPhone),
+      final result = await _authService.sendVerifyCode(
+        method,
+        isPhone: isPhone,
       );
+      return Result.success(result.fromModel);
     } catch (e) {
       return Result.error(getErrorMessage(e));
     }
@@ -57,6 +63,16 @@ class AuthRepoImpl implements AuthRepo {
       final json = await _authService.signUp(params);
       await _saveTokensAndUser(json);
       return Result.success(UserModel.fromJson(json['user']).fromModel);
+    } catch (e) {
+      return Result.error(getErrorMessage(e));
+    }
+  }
+
+  @override
+  Future<Result<void>> resetPassword(ResetPasswordRequestParams params) async {
+    try {
+      await _authService.resetPassword(params);
+      return const Result.success(null);
     } catch (e) {
       return Result.error(getErrorMessage(e));
     }

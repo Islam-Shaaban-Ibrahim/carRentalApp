@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qent/core/constants.dart';
+import 'package:qent/core/di/service_locator.dart';
 import 'package:qent/core/helpers/app_banner.dart';
 import 'package:qent/core/helpers/validator.dart';
 import 'package:qent/core/presentation/widgets/app_scaffold.dart';
 import 'package:qent/core/presentation/widgets/custom_text_form_field.dart';
 import 'package:qent/core/presentation/widgets/logo_and_name_widget.dart';
+import 'package:qent/core/router/app_router.dart';
+import 'package:qent/core/services/cache_service.dart';
 import 'package:qent/features/auth/auth_helpers.dart';
 import 'package:qent/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:qent/features/auth/presentation/cubit/auth_state.dart';
@@ -24,12 +28,20 @@ class _LoginScreenState extends State<LoginScreen> {
   late final TextEditingController _emailOrPhoneController;
   late final TextEditingController _passwordController;
   late final GlobalKey<FormState> _formKey;
+  late final SecureStorage _storage;
+  bool isRememberMe = true;
   @override
   void initState() {
     super.initState();
     _emailOrPhoneController = TextEditingController();
     _passwordController = TextEditingController();
     _formKey = GlobalKey<FormState>();
+    _storage = serviceLocator<SecureStorage>();
+    _storage.get(CacheConstants.userCredentials).then((value) {
+      if (value != null) {
+        _emailOrPhoneController.text = value;
+      }
+    });
   }
 
   @override
@@ -91,8 +103,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       30.verticalSpace,
                       RememberMeAndForgotPassword(
-                        onForgotPassword: () {},
-                        onRememberMeChanged: (value) {},
+                        onForgotPassword: () {
+                          Navigator.of(
+                            context,
+                          ).pushNamed(AppRoutes.resetPassword);
+                        },
+                        onRememberMeChanged: (value) {
+                          isRememberMe = value!;
+                        },
                       ),
                       30.verticalSpace,
                       LoginAndSignUpButtons(
@@ -103,6 +121,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               email: _emailOrPhoneController.text,
                               password: _passwordController.text,
                             );
+                            if (isRememberMe) {
+                              _storage.save(
+                                CacheConstants.userCredentials,
+                                _emailOrPhoneController.text,
+                              );
+                            }
                           }
                         },
                       ),

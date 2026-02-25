@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:qent/features/auth/data/models/sign_up_request_params.dart';
+import 'package:qent/features/auth/data/params/reset_password_request_params.dart';
+import 'package:qent/features/auth/data/params/sign_up_request_params.dart';
 import 'package:qent/features/auth/domain/repository/auth_repo.dart';
 import 'package:qent/features/auth/presentation/cubit/auth_state.dart';
+import 'package:qent/generated/l10n.dart';
 
 @singleton
 class AuthCubit extends Cubit<AuthState> {
@@ -32,7 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await _authRepo.sendVerifyCode(method, isPhone: isPhone);
     result.when(
       (failure) => emit(SendVerifyCodeError(failure)),
-      (verifyToken) => emit(SendVerifyCodeSuccess(verifyToken)),
+      (codeEntity) => emit(SendVerifyCodeSuccess(codeEntity)),
     );
   }
 
@@ -42,6 +44,28 @@ class AuthCubit extends Cubit<AuthState> {
     result.when(
       (failure) => emit(ConfirmCodeError(failure)),
       (_) => emit(const ConfirmCodeSuccess()),
+    );
+  }
+
+  Future<void> confirmEmailCode({
+    required String code,
+    required String codeConfirm,
+  }) async {
+    emit(const ConfirmCodeLoading());
+    await Future.delayed(const Duration(seconds: 2));
+    if (code == codeConfirm) {
+      emit(const ConfirmCodeSuccess());
+    } else {
+      emit(ConfirmCodeError(S.current.invalidCode));
+    }
+  }
+
+  Future<void> resetPassword(ResetPasswordRequestParams params) async {
+    emit(const ResetPasswordLoading());
+    final result = await _authRepo.resetPassword(params);
+    result.when(
+      (failure) => emit(ResetPasswordError(failure)),
+      (_) => emit(const ResetPasswordSuccess()),
     );
   }
 }

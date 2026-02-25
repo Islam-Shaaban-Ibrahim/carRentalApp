@@ -11,7 +11,7 @@ import 'package:qent/core/presentation/widgets/custom_text_form_field.dart';
 import 'package:qent/core/presentation/widgets/logo_and_name_widget.dart';
 import 'package:qent/core/presentation/widgets/select_location_dialog.dart';
 import 'package:qent/features/auth/auth_helpers.dart';
-import 'package:qent/features/auth/data/models/sign_up_request_params.dart';
+import 'package:qent/features/auth/data/params/sign_up_request_params.dart';
 import 'package:qent/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:qent/features/auth/presentation/cubit/auth_state.dart';
 import 'package:qent/features/auth/presentation/widgets/available_to_create_car.dart';
@@ -71,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         listenWhen: (previous, current) => current.isAuthStates,
         listener: (_, state) {
           if (state is AuthError) {
-            showAppBanner( state.message, isError: true);
+            showAppBanner(state.message, isError: true);
           }
           if (state is AuthSuccess) {
             handleSuccessNavigation(context, state.user);

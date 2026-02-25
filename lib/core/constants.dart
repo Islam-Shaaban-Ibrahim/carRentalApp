@@ -9,11 +9,13 @@ class APIConstants {
       isPhone ? '/auth/phone/request_verify_code/' : '/auth/forgot_password/';
   static const String confirmPhoneCodeEndPoint =
       '/auth/phone/confirm_verify_code/';
+  static const String resetPasswordEndPoint = '/auth/reset_password/';
 }
 
 class CacheConstants {
   static const String accessToken = 'ACCESS_TOKEN';
   static const String refreshToken = 'REFRESH_TOKEN';
   static const String user = 'USER';
+  static const String userCredentials = 'USER_CREDENTIALS';
   static const String onboarding = 'ONBOARDING';
 }
