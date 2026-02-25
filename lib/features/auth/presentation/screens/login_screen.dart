@@ -51,6 +51,21 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  void _handleLogin() {
+    context.read<AuthCubit>().login(
+      email: _emailOrPhoneController.text,
+      password: _passwordController.text,
+    );
+    if (isRememberMe) {
+      _storage.save(
+        CacheConstants.userCredentials,
+        _emailOrPhoneController.text,
+      );
+    } else {
+      _storage.delete(CacheConstants.userCredentials);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final isLoading = context.watch<AuthCubit>().state is AuthLoading;
@@ -117,16 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         isLoading: isLoading,
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            context.read<AuthCubit>().login(
-                              email: _emailOrPhoneController.text,
-                              password: _passwordController.text,
-                            );
-                            if (isRememberMe) {
-                              _storage.save(
-                                CacheConstants.userCredentials,
-                                _emailOrPhoneController.text,
-                              );
-                            }
+                            _handleLogin();
                           }
                         },
                       ),

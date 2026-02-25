@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:qent/core/constants.dart';
 import 'package:qent/core/di/service_locator.dart';
 import 'package:qent/core/presentation/widgets/app_scaffold.dart';
 import 'package:qent/core/router/app_router.dart';
 import 'package:qent/core/services/cache_service.dart';
 import 'package:qent/features/auth/data/models/user_model.dart';
+import 'package:qent/generated/assets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -68,9 +71,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return AppScaffold(
       body: Center(
-        child: Text(
-          'Splash Screen',
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 25),
+        child: SvgPicture.asset(
+          Assets.assetsIconsLogo,
+          width: 150.w,
+          height: 150.w,
         ),
       ),
     );
